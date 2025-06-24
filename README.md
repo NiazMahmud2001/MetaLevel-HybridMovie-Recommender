@@ -111,7 +111,7 @@ Our meta-level hybrid system combines three powerful techniques:
 │ SVD Collaborative │    │   TF-IDF Content    │    │   TF-IDF Similarity  │
 │    Filtering      │    │   Based Filtering   │    │   (Unrated Movies)   │
 │                   │    │                     │    │                      │
-│ Pu + qi + biases  │    │ cosine_similarity   │    │ cosine_similarity    │
+│ Pu . qi + biases  │    │ cosine_similarity   │    │ cosine_similarity    │
 │ + global_mean     │    │ (rated, rated)      │    │ (unrated, rated)     │
 │                   │    │                     │    │                      │
 │ (6040 × 3706)     │    │ (3706 × 3706)       │    │ (3706 × 177)         │
@@ -559,10 +559,10 @@ We welcome contributions from the community! Here's how you can help:
 ## 📚 Additional Resources
 
 ### 📖 Learning Materials
-- [Recommendation Systems Handbook](https://link-to-resource)
-- [Surprise Library Documentation](https://surprise.readthedocs.io/)
-- [Scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html)
-- [Gradio Documentation](https://gradio.app/docs/)
+- [Surprise Library Documentation](https://surprise.readthedocs.io/en/stable/matrix_factorization.html)
+- [Methmetical SVD](https://www.geeksforgeeks.org/singular-value-decomposition-svd/)
+- [Scikit-learn GBR Guide](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html)
+- [Gradio Documentation](https://www.gradio.app/docs)
 
 
 ## 📞 Contact & Support
