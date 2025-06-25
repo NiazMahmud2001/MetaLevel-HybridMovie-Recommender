@@ -346,6 +346,9 @@ class GradioUi():
         return self.moviesInfoDF["Movie_Info"].tolist() 
     
     def processorFunc(self, uid, movieInfo, rating, num_rec_movies): 
+        if not uid or not movieInfo: 
+            return "Please enter the corrent User ID or Select a Movie"
+            
         movieInfo = movieInfo.split(" - ")
         rating = int(rating)
         uid = int(uid)
