@@ -80,7 +80,6 @@ This Meta-Level Hybrid Movie Recommender System represents is a very creative ap
 Our meta-level hybrid system combines three powerful techniques:
 
 # Meta-Level Hybrid Movie Recommendation System Architecture
-<details> <summary> <code> Hybrid Approach Overview</code></summary>
 ```text
                     MovieLens 1M Dataset (1M ratings, 6040 users, 3883 movies)
                                             │
@@ -180,7 +179,6 @@ Our meta-level hybrid system combines three powerful techniques:
                │  for User & Context   │
                └───────────────────────┘
 ```
-</details>
 ## System Components:
 
 ### 1. **Data Layer**
