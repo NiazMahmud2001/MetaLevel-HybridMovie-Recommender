@@ -113,6 +113,7 @@ graph TD
     Q --> R["Sort DataFrame according to Adaptive Weighting"]
     R --> S["Get Top N×10 Candidates"]
     S --> T["Meta-Model Prediction on N×10 Candidates"]
+    k --> T
     T --> U["Final Top N Movies for User & Context"]
 ```
 
