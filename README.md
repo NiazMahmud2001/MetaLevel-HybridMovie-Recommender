@@ -82,27 +82,28 @@ Our meta-level hybrid system combines three powerful techniques:
 # Meta-Level Hybrid Movie Recommendation System Architecture
 ```mermaid
 graph TD
-    A[MovieLens 1M Dataset<br/>(1M ratings, 6040 users, 3883 movies)]
-    A --> B[Rating Dataset<br/>(1M ratings)]
-    A --> C[Movie Dataset<br/>(Genres & Meta)]
-    B --> D[Data Preprocessing<br/>Merge & Separate]
+    A["MovieLens 1M Dataset\n(1M ratings, 6040 users, 3883 movies)"]
+    A --> B["Rating Dataset\n(1M ratings)"]
+    A --> C["Movie Dataset\n(Genres & Meta)"]
+    B --> D["Data Preprocessing\nMerge & Separate"]
     C --> D
-    D --> E[Rated Movies<br/>(3706 movies)]
-    D --> F[Unrated Movies<br/>(177 movies)]
+    D --> E["Rated Movies\n(3706 movies)"]
+    D --> F["Unrated Movies\n(177 movies)"]
 
-    E --> G1[SVD Collaborative Filtering<br/>Pu . qi + biases + global_mean<br/>(6040 × 3706)]
-    E --> G2[TF-IDF Content-Based Filtering<br/>cosine_similarity<br/>(rated, rated)<br/>(3706 × 3706)]
-    F --> G3[TF-IDF Similarity<br/>cosine_similarity<br/>(unrated, rated)<br/>(3706 × 177)]
+    E --> G1["SVD Collaborative Filtering\nPu . qi + biases + global_mean\n(6040 × 3706)"]
+    E --> G2["TF-IDF Content-Based Filtering\ncosine_similarity\n(rated, rated)\n(3706 × 3706)"]
+    F --> G3["TF-IDF Similarity\ncosine_similarity\n(unrated, rated)\n(3706 × 177)"]
 
-    G2 --> H[Combined TF-IDF Similarity Matrix<br/>(3706 × 3883)]
+    G2 --> H["Combined TF-IDF Similarity Matrix\n(3706 × 3883)"]
     G3 --> H
 
-    H --> I[User-Genre Preference Matrix<br/>ratings_pivot × combined_tfidf<br/>(6040 × 3883)]
-    I --> J[Data Transformation<br/>Melt Operations<br/>SVD_Rating → TfIdf_Rating → Long Format]
-    J --> K[Meta-Level Learner<br/>Gradient Boosting Regressor<br/>(Trained on actual ratings)]
-    K --> L[Prediction & Ranking Phase<br/>Adaptive Weighting:<br/>If unrated &lt; 30:<br/>0.2×SVD + 0.6×TfIdf + 0.2×Pure_TfIdf<br/>Else:<br/>0.4×SVD + 0.2×TfIdf + 0.4×Pure_TfIdf]
-    L --> M[Top N×10 Candidates ↓<br/>Meta-Model Prediction ↓<br/>Final Top N Movies<br/>for User & Context]
+    H --> I["User-Genre Preference Matrix\nratings_pivot × combined_tfidf\n(6040 × 3883)"]
+    I --> J["Data Transformation\nMelt Operations\nSVD_Rating → TfIdf_Rating → Long Format"]
+    J --> K["Meta-Level Learner\nGradient Boosting Regressor\n(Trained on actual ratings)"]
+    K --> L["Prediction & Ranking Phase\nAdaptive Weighting:\nIf unrated < 30:\n0.2×SVD + 0.6×TfIdf + 0.2×Pure_TfIdf\nElse:\n0.4×SVD + 0.2×TfIdf + 0.4×Pure_TfIdf"]
+    L --> M["Top N×10 Candidates ↓\nMeta-Model Prediction ↓\nFinal Top N Movies\nfor User & Context"]
 ```
+
 
 ## System Components:
 
