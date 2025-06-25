@@ -441,10 +441,10 @@ prep_all_movies.fit(moviesDF)
 ### 🎯 Model Performance
 <!-- ADD YOUR PERFORMANCE METRICS HERE -->
 
-| Metric | SVD Only | Hybrid Model |
-|--------|----------|--------------|
-| **RMSE** | 0.165  |    0.0586    |
-| **MAE** | 0.1319  |    0.0782    |
+| Metric | SVD Only | Meta-Level Hybrid Model |
+|--------|----------|-------------------------|
+| **RMSE** | 0.165  |         0.0586          |
+| **MAE** | 0.1319  |         0.0782          |
 
 
 
