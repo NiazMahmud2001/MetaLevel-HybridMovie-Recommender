@@ -104,8 +104,8 @@ graph TD
     L --> M["Top N×10 Candidates ↓ Meta-Model Prediction ↓Final Top N Movies for User & Context"]
     M --> N["Sort DataFrame according to Adaptive Weighting: "]
     N --> O["Get Top N×10 Candidates"]
-    P --> Q["Meta-Model Prediction on N×10 Candidates"]
-    R --> S["Final Top N Movies for User & Context"]
+    O --> P["Meta-Model Prediction on N×10 Candidates"]
+    P --> Q["Final Top N Movies for User & Context"]
 ```
 
 
