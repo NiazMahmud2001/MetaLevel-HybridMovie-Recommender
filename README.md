@@ -101,11 +101,10 @@ graph TD
     I --> J["Data Transformation Melt Operations SVD_Rating → TfIdf_Rating → Long Format"]
     J --> K["Meta-Level Learner Gradient Boosting Regressor (Trained on actual ratings)"]
     K --> L["Prediction & Ranking Phase Adaptive Weighting: If unrated < 30: 0.2×SVD + 0.6×TfIdf + 0.2×Pure_TfIdf Else:0.4×SVD + 0.2×TfIdf + 0.4×Pure_TfIdf"]
-    L --> M["Top N×10 Candidates ↓ Meta-Model Prediction ↓Final Top N Movies for User & Context"]
-    M --> N["Sort DataFrame according to Adaptive Weighting: "]
-    N --> O["Get Top N×10 Candidates"]
-    O --> P["Meta-Model Prediction on N×10 Candidates"]
-    P --> Q["Final Top N Movies for User & Context"]
+    L --> M["Sort DataFrame according to Adaptive Weighting: "]
+    M --> N["Get Top N×10 Candidates"]
+    N --> O["Meta-Model Prediction on N×10 Candidates"]
+    O --> P["Final Top N Movies for User & Context"]
 ```
 
 
