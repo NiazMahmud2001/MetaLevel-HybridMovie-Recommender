@@ -100,11 +100,20 @@ graph TD
     H --> I["User-Genre Preference Matrix ratings_pivot × combined_tfidf (6040 × 3883)"]
     I --> J["Data Transformation Melt Operations SVD_Rating → TfIdf_Rating → Long Format"]
     J --> K["Meta-Level Learner Gradient Boosting Regressor (Trained on actual ratings)"]
-    K --> L["Prediction & Ranking Phase Adaptive Weighting: If unrated < 30: 0.2×SVD + 0.6×TfIdf + 0.2×Pure_TfIdf Else:0.4×SVD + 0.2×TfIdf + 0.4×Pure_TfIdf"]
-    L --> M["Sort DataFrame according to Adaptive Weighting: "]
-    M --> N["Get Top N×10 Candidates"]
-    N --> O["Meta-Model Prediction on N×10 Candidates"]
-    O --> P["Final Top N Movies for User & Context"]
+
+    L["Get UserID , MovieID and N From Website"]
+    L --> M["Rated Movies By 'UserID'"]
+    L --> N["Un-Rated Movies By 'UserID'"]
+    N --> O["Get SVD Information -> User-Movie reation table in terms of 'Ratings' "]
+    N --> P["Get TF-IDF informaton -> User-Movie relation table interms of Rated movies 'Geners' "]
+
+    Q["Prediction & Ranking Phase Adaptive Weighting: If len(rated-movies) > 30: 0.2×SVD + 0.6×TfIdf + 0.2×Pure_TfIdf Else:0.4×SVD + 0.2×TfIdf + 0.4×Pure_TfIdf"]
+    O --> Q
+    P --> Q
+    Q --> R["Sort DataFrame according to Adaptive Weighting"]
+    R --> S["Get Top N×10 Candidates"]
+    S --> T["Meta-Model Prediction on N×10 Candidates"]
+    T --> U["Final Top N Movies for User & Context"]
 ```
 
 
