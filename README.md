@@ -81,7 +81,7 @@ Our meta-level hybrid system combines three powerful techniques:
 
 # Meta-Level Hybrid Movie Recommendation System Architecture
 
-```
+```text
                     MovieLens 1M Dataset (1M ratings, 6040 users, 3883 movies)
                                             │
                     ┌───────────────────────┴───────────────────────┐
