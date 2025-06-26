@@ -82,7 +82,7 @@ Our meta-level hybrid system combines three powerful techniques:
 # Meta-Level Hybrid Movie Recommendation System Architecture
 ```mermaid
 graph TD
-    A["MovieLens 1M Dataset (1M ratings, 6040 users, 3883 movies)"]
+    A["MovieLens 1M Dataset <br> (1M ratings, 6040 users, 3883 movies)"]
     A --> B["Rating Dataset <br> (1M ratings)"]
     A --> C["Movie Dataset <br> (Genres & Meta)"]
     B --> D["Data Preprocessing <br> (Merge & Separate)"]
@@ -91,32 +91,32 @@ graph TD
     D --> F["Unrated Movies <br> (177 movies)"]
 
     E --> G1["SVD Collaborative Filtering <br> (Equation: Pu . qi + biases + global_mean)<br>Shape:(6040 × 3706)"]
-    E --> G2["TF-IDF Content-Based Filtering cosine_similarity (rated, rated) (3706 × 3706)"]
-    F --> G3["TF-IDF Similarity cosine_similarity (unrated, rated) (3706 × 177)"]
+    E --> G2["TF-IDF Content-Based Filtering <br> cosine_similarity (rated, rated) <br> shape:(3706 × 3706)"]
+    F --> G3["TF-IDF Similarity <br> cosine_similarity between -> (unrated, rated) <br>shape:(3706 × 177)"]
 
-    G2 --> H["Combined TF-IDF Similarity Matrix (3706 × 3883)"]
+    G2 --> H["Combined TF-IDF Similarity Matrix <br> shape:(3706 × 3883)"]
     G3 --> H
     G1 --> I
-    H --> I["User-Genre Preference Matrix ratings_pivot × combined_tfidf (6040 × 3883)"]
-    I --> J["Data Transformation Melt Operations SVD_Rating → TfIdf_Rating → Long Format"]
-    J --> K["Meta-Level Learner Gradient Boosting Regressor (Trained on actual ratings)"]
+    H --> I["User-Genre Preference Matrix <br> dot(ratings_pivot × combined_tfidf) <br> shape:(6040 × 3883)"]
+    I --> J["Data Transformation <br> Melt Operations: <br> SVD_Rating → Long Format <br> transodrmed TfIdf_Rating → Long Format"]
+    J --> K["Meta-Level Learner <br> Gradient Boosting Regressor (Trained on actual ratings)"]
 
     L["Get UserID , MovieID and N From Website"]
     L --> M["Rated Movies By 'UserID'"]
     L --> N["Un-Rated Movies By 'UserID'"]
-    N --> O["Get userID SVD Information -> User-Movie reation table in-terms of 'Ratings' "]
-    N --> P["Get UserID TF-IDF informaton -> User-Movie relation table in-terms of Rated movies 'Geners' "]
-    N --> V["Get MovieID TF-IDF -> Movie-Movie relation table in-terms of 'Geners'"]
+    N --> O["Get userID SVD Information <br>-> User-Movie reation table <br>in-terms of 'Ratings' "]
+    N --> P["Get UserID TF-IDF informaton <br>-> User-Movie relation table in-terms <br>of Rated movies 'Geners' "]
+    N --> V["Get MovieID TF-IDF <br>-> Movie-Movie relation table <br>in-terms of 'Geners'"]
 
-    Q["Prediction & Ranking Phase Adaptive Weighting: If len(rated-movies) > 30: 0.2×SVD + 0.6×TfIdf + 0.2×Pure_TfIdf Else:0.4×SVD + 0.2×TfIdf + 0.4×Pure_TfIdf"]
+    Q["Prediction & Ranking Phase Adaptive Weighting:<br>If len(rated-movies) > 30: 0.2×SVD + 0.6×TfIdf + 0.2×Pure_TfIdf <br>Else:0.4×SVD + 0.2×TfIdf + 0.4×Pure_TfIdf"]
     O --> Q
     P --> Q
     V --> Q
-    Q --> R["Sort DataFrame according to Adaptive Weighting"]
+    Q --> R["Sort DataFrame according to <br>Adaptive Weighting"]
     R --> S["Get Top N×10 Candidates"]
-    S --> T["Meta-Model Prediction on N×10 Candidates"]
+    S --> T["Meta-Model Prediction on<br> N×10 Candidates"]
     K --> T
-    T --> U["Final Top N Movies for User & Context"]
+    T --> U["Final Top N Movies for <br>User & Context"]
 ```
 
 
