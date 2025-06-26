@@ -83,15 +83,14 @@ Our meta-level hybrid system combines three powerful techniques:
 ```mermaid
 graph TD
     A["MovieLens 1M Dataset (1M ratings, 6040 users, 3883 movies)"]
-    A --> B["Rating Dataset
-              (1M ratings)"]
-    A --> C["Movie Dataset (Genres & Meta)"]
-    B --> D["Data Preprocessing (Merge & Separate)"]
+    A --> B["Rating Dataset <br> (1M ratings)"]
+    A --> C["Movie Dataset <br> (Genres & Meta)"]
+    B --> D["Data Preprocessing <br> (Merge & Separate)"]
     C --> D
-    D --> E["Rated Movies (3706 movies)"]
-    D --> F["Unrated Movies (177 movies)"]
+    D --> E["Rated Movies <br> (3706 movies)"]
+    D --> F["Unrated Movies <br> (177 movies)"]
 
-    E --> G1["SVD Collaborative Filtering (Equation: Pu . qi + biases + global_mean)(6040 × 3706)"]
+    E --> G1["SVD Collaborative Filtering <br> (Equation: Pu . qi + biases + global_mean)<br>Shape:(6040 × 3706)"]
     E --> G2["TF-IDF Content-Based Filtering cosine_similarity (rated, rated) (3706 × 3706)"]
     F --> G3["TF-IDF Similarity cosine_similarity (unrated, rated) (3706 × 177)"]
 
