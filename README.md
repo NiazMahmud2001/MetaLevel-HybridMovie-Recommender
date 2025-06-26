@@ -83,7 +83,8 @@ Our meta-level hybrid system combines three powerful techniques:
 ```mermaid
 graph TD
     A["MovieLens 1M Dataset (1M ratings, 6040 users, 3883 movies)"]
-    A --> B["Rating Dataset (1M ratings)"]
+    A --> B["`Rating Dataset
+(1M ratings)`"]
     A --> C["Movie Dataset (Genres & Meta)"]
     B --> D["Data Preprocessing (Merge & Separate)"]
     C --> D
