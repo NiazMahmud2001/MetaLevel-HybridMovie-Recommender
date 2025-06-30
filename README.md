@@ -88,6 +88,9 @@ graph TD
     B --> D["Data Preprocessing <br> (Merge & Separate)"]
     C --> D
     D --> E["Rated Movies <br> (3706 movies)"]
+
+    E1["Pivoted Rated Movies <br>(6040, 3706)"]
+    E --> E1
     D --> F["Unrated Movies <br> (177 movies)"]
 
     E --> G1["SVD Collaborative Filtering <br> (Equation: Pu . qi + biases + global_mean)<br>Shape:(6040 × 3706)"]
@@ -96,18 +99,19 @@ graph TD
 
     G2 --> H["Combined TF-IDF Similarity Matrix <br> shape:(3706 × 3883)"]
     G3 --> H
-    G1 --> I
+    G1 --> J
+    E1 --> I
     H --> I["User-Genre Preference Matrix <br> dot(ratings_pivot × combined_tfidf) <br> shape:(6040 × 3883)"]
     I --> J["Data Transformation <br> Melt Operations: <br> SVD_Rating → Long Format <br> transodrmed TfIdf_Rating → Long Format"]
     J --> K["Meta-Level Learner <br> Gradient Boosting Regressor (Trained on actual ratings)"]
 
     L["Get UserID , MovieID and N From Website"]
-    L --> M["Rated Movies By 'UserID'"]
+    
     L --> N["Un-Rated Movies By 'UserID'"]
     N --> O["Get userID SVD Information <br>-> User-Movie reation table <br>in-terms of 'Ratings' "]
     N --> P["Get UserID TF-IDF informaton <br>-> User-Movie relation table in-terms <br>of Rated movies 'Geners' "]
     N --> V["Get MovieID TF-IDF <br>-> Movie-Movie relation table <br>in-terms of 'Geners'"]
-
+    
     Q["Prediction & Ranking Phase Adaptive Weighting:<br>If len(rated-movies) > 30: 0.2×SVD + 0.6×TfIdf + 0.2×Pure_TfIdf <br>Else:0.4×SVD + 0.2×TfIdf + 0.4×Pure_TfIdf"]
     O --> Q
     P --> Q
@@ -117,6 +121,7 @@ graph TD
     S --> T["Meta-Model Prediction on<br> N×10 Candidates"]
     K --> T
     T --> U["Final Top N Movies for <br>User & Context"]
+
 ```
 
 
